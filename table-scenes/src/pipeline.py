@@ -70,14 +70,20 @@ def run_pipeline(cfg_path="config/config.yaml", classes_path="config/classes_coc
                 force_change = False
                 
                 # 特征物品优先级：扑克牌 > 工作物品 > 餐具+筷子
+                # 增加场景切换的敏感度，几乎所有场景变化都可以立即切换
                 if has_poker:
                     force_change = True
                     reason = "扑克牌"
-                elif has_work_items and scene == 'work' and last_scene != 'work':
+                elif has_work_items and scene == 'work':
                     force_change = True
                     reason = "工作物品"
-                elif has_chopsticks and has_dining_items and scene == 'dining' and last_scene != 'dining':
+                elif has_dining_items and scene == 'dining':
                     force_change = True
+                    reason = "餐饮物品"
+                # 对其他任何场景的变化也快速响应
+                elif scene != 'nothing' and last_scene != scene:
+                    force_change = True
+                    reason = "场景改变"
                     reason = "餐具和筷子"
                 
                 # 处理场景切换
@@ -115,13 +121,15 @@ def run_pipeline(cfg_path="config/config.yaml", classes_path="config/classes_coc
         else:
             # 当前判断与上次场景相同，但需要处理特殊情况
             
-            # 特殊情况：当前是高优先级场景（如work）但画面中已经没有对应物品
-            if last_scene == 'work' and not has_work_items and current_has_items:
-                # 开始计时，考虑切换到其他场景
+            # 特殊情况：当前场景物品消失但有其他物品出现
+            if (last_scene == 'work' and not has_work_items and current_has_items) or \
+               (last_scene == 'dining' and not has_dining_items and current_has_items) or \
+               (last_scene == 'entertaining' and not has_poker and current_has_items):
+                # 几乎立即响应场景变化
                 if stable_since == 0:
                     stable_since = time.time()
-                    print(f"工作物品已消失，可能需要切换场景...")
-                elif time.time() - stable_since >= hysteresis_s * 0.8:  # 略快于正常切换
+                    print(f"特征物品已消失，准备切换场景...")
+                elif time.time() - stable_since >= hysteresis_s * 0.5:  # 非常快的切换
                     print(f"工作物品持续消失，重置检测窗口")
                     win.reset()  # 重置检测窗口，使系统能更快响应新场景
                     stable_since = 0
