@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>微信图片_2025-08-27_111016_778.jpg</filename>
+	<path>D:\portfolio\table-scenes\data\samples\train\微信图片_2025-08-27_111016_778.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3024</width>
+		<height>4032</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>poker</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>706</xmin>
+			<ymin>817</ymin>
+			<xmax>2347</xmax>
+			<ymax>3171</ymax>
+		</bndbox>
+	</object>
+</annotation>

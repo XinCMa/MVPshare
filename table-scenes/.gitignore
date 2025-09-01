@@ -1,0 +1,32 @@
+# 虚拟环境
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 分发/打包
+dist/
+build/
+*.egg-info/
+
+# 大型模型文件（超过100MB）
+*.onnx
+*.dll
+*.lib
+mobileclip_blt.ts
+yoloe-11l-poker-memory.pt
+yolov8s-world.pt
+yolov8s-worldv2.pt
+# 明确排除超过100MB的训练结果文件
+runs/detect/train*/weights/best.pt
+runs/detect/train*/weights/last.pt
+
+# 保留必要的模型文件（如果体积小于100MB）
+!yoloe-11l-seg.pt
+
+# 运行时生成的文件
+runs/
+
+# 临时文件
+.DS_Store
+Thumbs.db

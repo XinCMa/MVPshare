@@ -1,0 +1,6 @@
+{
+    "yaml-with-script.shellcheckFolder": "D:\\Programs\\Tools\\ShellCheck\\shellcheck-v0.11.0",
+    "shellcheck.executablePath": "D:\\Programs\\Tools\\ShellCheck\\shellcheck-v0.11.0\\shellcheck.exe",
+    "python.defaultInterpreterPath": "D:\\Projects\\venv39\\Scripts\\python.exe",
+    "python.pythonPath": "D:\\Projects\\venv39\\Scripts\\python.exe"
+}

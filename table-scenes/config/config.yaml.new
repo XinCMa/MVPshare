@@ -1,0 +1,25 @@
+# 项目主配置
+camera:
+  index: 1 #1为外接摄像头，0为电脑默认摄像头
+  width: 1920   # 先用 1080p，性能和检测速度更均衡
+  height: 1080
+  fps: 30
+
+model:
+  weights: yolov8n.pt
+  imgsz: 640
+  conf: 0.35
+  iou: 0.5
+  device: auto
+
+roi:
+  enabled: true
+  polygon: [[80,120],[1200,120],[1250,700],[60,700]]
+
+window:
+  seconds: 10
+  switch_hysteresis_s: 2 # 切换需稳定 2 秒
+
+viz:
+  enabled: true
+  max_items: 8

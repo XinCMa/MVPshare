@@ -1,0 +1,25 @@
+# 项目主配置
+camera:
+  index: 1 #1为外接摄像头，0为电脑默认摄像头
+  width: 1920   # 先用 1080p，性能和检测速度更均衡
+  height: 1080
+  fps: 30
+
+model:
+  weights: yoloe-11l-seg.pt  # 使用 YOLOE-11L-SEG 模型
+  imgsz: 640
+  conf: 0.4  # YOLOE 默认置信度阈值
+  iou: 0.5
+  device: auto
+
+roi:
+  enabled: true
+  polygon: [[80,120],[1200,120],[1250,700],[60,700]]
+
+window:
+  seconds: 2  # 减少滑动窗口时长，让系统更快检测到变化
+  switch_hysteresis_s: 0.5 # 减少场景稳定确认时间，更快切换场景
+
+viz:
+  enabled: true
+  max_items: 8

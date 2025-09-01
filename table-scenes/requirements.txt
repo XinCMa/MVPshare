@@ -1,0 +1,7 @@
+ultralytics==8.*
+opencv-python
+numpy
+pyyaml
+pyttsx3
+torch>=2.0.0
+torchvision>=0.15.0
